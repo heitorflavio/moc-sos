@@ -26,8 +26,8 @@ class UpdateItemRequest extends FormRequest
             'description' => ['required', 'string'],
             'category_id' => ['required', 'exists:categories,id'],
             'zip_code' => ['required', 'string'],
-            'latitude' =>  ['required', 'string'],
-            'longitude' => ['required', 'string'],
+            'latitude' =>  ['string'],
+            'longitude' => ['string'],
         ];
     }
 }

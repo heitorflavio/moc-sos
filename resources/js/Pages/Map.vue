@@ -99,12 +99,12 @@ function reset() {
           <input
             type="text"
             placeholder="Pesquisar..."
-            class="px-4 py-2 rounded-lg border border-gray-700 bg-white text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-black dark:text-white"
+            class="px-4 py-2 rounded-lg border border-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-black dark:text-white"
             v-model="form.search"
           />
 
           <select
-            class="px-4 py-2 rounded-lg border border-gray-700 bg-white text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-black dark:text-white"
+            class="px-4 py-2 rounded-lg border border-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-black dark:text-white"
             v-model="form.category"
           >
             <option value="">Categorias</option>

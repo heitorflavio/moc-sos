@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
+use App\Actions\Api\CepAction;
+use App\Actions\Api\LocaleAction;
 use App\Models\Item;
 use Inertia\Inertia;
 
@@ -24,7 +26,10 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render(
+            'Items/Create',
+            ['categories' => \App\Models\Category::all()]
+        );
     }
 
     /**
@@ -32,7 +37,19 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        Item::create($request->validated());
+        $cep = new CepAction();
+        $cep = $cep($request->zip_code);
+
+        $locale = new LocaleAction();
+        $locale = $locale($cep);
+
+
+        $item = Item::create($request->validated());
+        $item->update([
+            'latitude' => $locale['lat'],
+            'longitude' => $locale['lng'],
+        ]);
+
         return back()->with('success', 'Item created.');
     }
 

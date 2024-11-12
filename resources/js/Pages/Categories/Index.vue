@@ -1,11 +1,8 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { defineProps } from "vue";
-import  moment from "moment";
-
-
-
-
+import { Link } from "@inertiajs/vue3";
+import moment from "moment";
 
 const props = defineProps({
   categories: Object,
@@ -13,17 +10,29 @@ const props = defineProps({
 </script>
 
 <template>
-  <AppLayout title="Dashboard">
+  <AppLayout title="Categories">
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white">
-        Categories
-      </h2>
+      <div class="flex justify-between items-center">
+        <h2
+          class="font-semibold text-xl text-gray-800 leading-tight dark:text-white"
+        >
+          Categories
+        </h2>
+        <Link
+          :href="route('categories.create')"
+          class="px-3 py-1 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700"
+        >
+          Create
+        </Link>
+      </div>
     </template>
 
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-          <div class="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-800">
+          <div
+            class="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-800"
+          >
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
               <table
                 class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
@@ -39,16 +48,19 @@ const props = defineProps({
                 </thead>
                 <tbody>
                   <tr
-                    v-for="category in categories.data" :key="category.id"
+                    v-for="category in categories.data"
+                    :key="category.id"
                     class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
                   >
                     <th
                       scope="row"
                       class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                        {{ category.name }}
+                      {{ category.name }}
                     </th>
-                    <td class="px-6 py-4">{{ moment(category.created_at).format('ll') }}</td>
+                    <td class="px-6 py-4">
+                      {{ moment(category.created_at).format("ll") }}
+                    </td>
                     <td class="px-6 py-4">
                       <a
                         href="#"
