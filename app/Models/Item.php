@@ -11,6 +11,11 @@ class Item extends Model
 
     protected $fillable = ['name', 'description', 'category_id', 'zip_code', 'latitude', 'longitude'];
 
+    /**
+     * Get the category that owns the item.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);

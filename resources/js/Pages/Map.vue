@@ -2,6 +2,7 @@
 import { Head, Link, useForm, router } from "@inertiajs/vue3";
 import Map from "@/Components/Map.vue";
 import { defineProps, onMounted, ref } from "vue";
+import Dark from "@/Components/Dark.vue";
 
 const props = defineProps({
   items: {
@@ -70,10 +71,7 @@ function reset() {
       </div>
 
       <!-- Menu Hamburguer (para mobile) -->
-      <button
-        class="lg:hidden text-white"
-        @click="menuOpen = !menuOpen"
-      >
+      <button class="lg:hidden text-white" @click="menuOpen = !menuOpen">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -97,15 +95,16 @@ function reset() {
         @submit.prevent="submit()"
       >
         <div class="flex space-x-4 items-center">
+          <Dark />
           <input
             type="text"
             placeholder="Pesquisar..."
-            class="px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="px-4 py-2 rounded-lg border border-gray-700 bg-white text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-black dark:text-white"
             v-model="form.search"
           />
 
           <select
-            class="px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="px-4 py-2 rounded-lg border border-gray-700 bg-white text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-black dark:text-white"
             v-model="form.category"
           >
             <option value="">Categorias</option>
@@ -134,7 +133,10 @@ function reset() {
       </form>
     </div>
     <!-- Menu mobile -->
-    <div v-if="menuOpen" class="lg:hidden absolute top-16 left-0 w-full bg-gray-800 p-4">
+    <div
+      v-if="menuOpen"
+      class="lg:hidden absolute top-16 left-0 w-full bg-gray-800 p-4"
+    >
       <form
         action="#"
         class="flex flex-col space-y-4"
@@ -175,6 +177,7 @@ function reset() {
             >
               Limpar
             </button>
+            <Dark />
           </div>
         </div>
       </form>
@@ -184,7 +187,7 @@ function reset() {
   <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
     <img
       id="background"
-      class="absolute  top-0 max-w-[877px] w-full h-full object-cover object-center z-0"
+      class="absolute top-0 max-w-[877px] w-full h-full object-cover object-center z-0"
       src="https://laravel.com/assets/img/welcome/background.svg"
     />
     <div

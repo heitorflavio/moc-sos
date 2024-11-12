@@ -11,6 +11,11 @@ class Category extends Model
 
     protected $fillable = ['name', 'description'];
 
+    /**
+     * Get the items for the category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function items()
     {
         return $this->hasMany(Item::class);
