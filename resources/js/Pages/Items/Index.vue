@@ -69,10 +69,10 @@ const props = defineProps({
                       {{ moment(item.created_at).format("ll") }}
                     </td>
                     <td class="px-6 py-4">
-                      <a
-                        href="#"
+                      <Link
+                        :href="route('items.edit', item.id)"
                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                        >Edit</a
+                        >Edit</Link
                       >
                     </td>
                   </tr>

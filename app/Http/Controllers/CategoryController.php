@@ -48,7 +48,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return inertia('Categories/Edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
