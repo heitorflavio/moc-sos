@@ -3,6 +3,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import { defineProps } from "vue";
 import { Link } from "@inertiajs/vue3";
 import moment from "moment";
+import Pagination from "@/Components/Pagination.vue";
 
 const props = defineProps({
   categories: Object,
@@ -71,6 +72,10 @@ const props = defineProps({
                   </tr>
                 </tbody>
               </table>
+              <!-- Pagination -->
+              <div class="p-4">
+                <Pagination :pagination="categories" />
+              </div>
             </div>
           </div>
         </div>

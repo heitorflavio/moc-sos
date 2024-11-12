@@ -3,6 +3,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import { defineProps } from "vue";
 import moment from "moment";
 import { Link } from "@inertiajs/vue3";
+import Pagination from "@/Components/Pagination.vue";
 
 const props = defineProps({
   items: Object,
@@ -16,7 +17,7 @@ const props = defineProps({
         <h2
           class="font-semibold text-xl text-gray-800 leading-tight dark:text-white"
         >
-            Items
+          Items
         </h2>
         <Link
           :href="route('items.create')"
@@ -77,6 +78,10 @@ const props = defineProps({
                   </tr>
                 </tbody>
               </table>
+              <!-- Pagination -->
+              <div class="p-4">
+                <Pagination :pagination="items" />
+              </div>
             </div>
           </div>
         </div>
