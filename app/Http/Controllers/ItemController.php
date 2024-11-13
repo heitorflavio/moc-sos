@@ -55,7 +55,7 @@ class ItemController extends Controller
             'city' => $cep['localidade'],
             'state' => $cep['estado'],
             'address' => $cep['logradouro'],
-            
+
         ]);
 
         return back()->with('success', 'Item created.');
@@ -85,7 +85,26 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
+        try {
+            $cep = new CepAction();
+            $cep = $cep($request->zip_code);
+
+            $locale = new LocaleAction();
+            $locale = $locale($cep);
+            $request->validated();
+        } catch (\Exception $e) {
+            return back()->with('error', 'Invalid zip code.');
+        }
+
         $item->update($request->validated());
+        $item->update([
+            'latitude' => $locale['lat'],
+            'longitude' => $locale['lng'],
+            'city' => $cep['localidade'],
+            'state' => $cep['estado'],
+            'address' => $cep['logradouro'],
+        ]);
+        
         return back()->with('success', 'Item updated.');
     }
 
