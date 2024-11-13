@@ -17,8 +17,10 @@ class MapController extends Controller
 
         $items = Item::when($request->category, function ($query, $category) {
             return $query->where('category_id', $category);
+        })->when($request->search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
         })->get();
-        logger($items);
+
         return Inertia::render('Map', [
             'items' => $items,
             'categories' => Category::all(),
