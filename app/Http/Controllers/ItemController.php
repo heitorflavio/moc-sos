@@ -37,17 +37,25 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        $cep = new CepAction();
-        $cep = $cep($request->zip_code);
+        try {
+            $cep = new CepAction();
+            $cep = $cep($request->zip_code);
 
-        $locale = new LocaleAction();
-        $locale = $locale($cep);
-
+            $locale = new LocaleAction();
+            $locale = $locale($cep);
+            $request->validated();
+        } catch (\Exception $e) {
+            return back()->with('error', 'Invalid zip code.');
+        }
 
         $item = Item::create($request->validated());
         $item->update([
             'latitude' => $locale['lat'],
             'longitude' => $locale['lng'],
+            'city' => $cep['localidade'],
+            'state' => $cep['estado'],
+            'address' => $cep['logradouro'],
+            
         ]);
 
         return back()->with('success', 'Item created.');

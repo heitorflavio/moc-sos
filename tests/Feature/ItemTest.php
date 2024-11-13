@@ -12,9 +12,7 @@ test('store', function () {
         'name' => 'Item Name',
         'description' => 'Item Description',
         'category_id' => $category->id,
-        'zip_code' => '12345',
-        'latitude' => '1.234567',
-        'longitude' => '1.234567',
+        'zip_code' => '39402601',
     ]);
 
     $response->assertStatus(302);
@@ -23,9 +21,7 @@ test('store', function () {
         'name' => 'Item Name',
         'description' => 'Item Description',
         'category_id' => $category->id,
-        'zip_code' => '12345',
-        'latitude' => '1.234567',
-        'longitude' => '1.234567',
+        'zip_code' => '39402601',
     ]);
 });
 
