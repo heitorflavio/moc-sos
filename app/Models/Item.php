@@ -10,7 +10,7 @@ class Item extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'category_id', 'zip_code', 'latitude', 'longitude'
-    , 'city', 'state', 'country', 'address', 'number'];
+    , 'city', 'state', 'country', 'address', 'number', 'neighborhood'];
 
     /**
      * Get the category that owns the item.

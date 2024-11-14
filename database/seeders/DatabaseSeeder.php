@@ -19,6 +19,11 @@ class DatabaseSeeder extends Seeder
                 ItemSeeder::class,
                 UserSeeder::class,
             ]);
+        }else{
+            $this->call([
+                UserSeeder::class,
+                DesSeeder::class,
+            ]);
         }
 
         User::create([

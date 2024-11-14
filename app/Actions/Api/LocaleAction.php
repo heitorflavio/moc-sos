@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 
 class LocaleAction
 {
-    public function __invoke($address)
+    public function __invoke($address, $number)
     {
         $client = new Client();
 
@@ -19,7 +19,7 @@ class LocaleAction
 
         $response = $client->get('https://maps.googleapis.com/maps/api/geocode/json', [
             'query' => [
-                'address' => "{$rua}, {$bairro}, {$cidade}, {$estado}, {$cep}",
+                'address' => "{$rua} {$number}, {$bairro}, {$cidade}, {$estado}, {$cep}",
                 'key' => 'AIzaSyDB4Z02pk4O1AxJX2d5kEkdotedSF14-hQ'
             ],
             'headers' => [

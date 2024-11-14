@@ -42,7 +42,7 @@ class ItemController extends Controller
             $cep = $cep($request->zip_code);
 
             $locale = new LocaleAction();
-            $locale = $locale($cep);
+            $locale = $locale($cep, $request->number);
             $request->validated();
         } catch (\Exception $e) {
             return back()->with('error', 'Invalid zip code.');
@@ -55,7 +55,8 @@ class ItemController extends Controller
             'city' => $cep['localidade'],
             'state' => $cep['estado'],
             'address' => $cep['logradouro'],
-
+            'number' => $request->number,
+            'neighborhood' => $cep['bairro'],
         ]);
 
         return back()->with('success', 'Item created.');
@@ -90,7 +91,7 @@ class ItemController extends Controller
             $cep = $cep($request->zip_code);
 
             $locale = new LocaleAction();
-            $locale = $locale($cep);
+            $locale = $locale($cep, $request->number);
             $request->validated();
         } catch (\Exception $e) {
             return back()->with('error', 'Invalid zip code.');
@@ -103,8 +104,10 @@ class ItemController extends Controller
             'city' => $cep['localidade'],
             'state' => $cep['estado'],
             'address' => $cep['logradouro'],
+            'number' => $request->number,
+            'neighborhood' => $cep['bairro'],
         ]);
-        
+
         return back()->with('success', 'Item updated.');
     }
 

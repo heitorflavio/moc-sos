@@ -14,6 +14,7 @@ const form = useForm({
   description: "",
   category_id: "",
   zip_code: "",
+  number: "",
 });
 
 const submit = () => {
@@ -27,7 +28,6 @@ const submit = () => {
     },
   });
 };
-
 </script>
 
 <template>
@@ -111,6 +111,21 @@ const submit = () => {
                   v-model="form.zip_code"
                   v-maska
                   data-maska="#####-###"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white"
+                />
+              </div>
+              <div class="col-span-6 sm:col-span-4 mt-4">
+                <label
+                  for="number"
+                  class="block font-medium text-sm text-gray-700 dark:text-gray-300"
+                  >Number</label
+                >
+                <input
+                  type="text"
+                  id="number"
+                  v-model="form.number"
+                  v-maska
+                  data-maska="########"
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white"
                 />
               </div>

@@ -15,6 +15,7 @@ const form = useForm({
   description: props.item.description || "",
   category_id: props.item.category_id || "",
   zip_code: props.item.zip_code || "",
+  number: props.item.number || "",
 });
 
 const submit = () => {
@@ -33,7 +34,9 @@ const submit = () => {
 <template>
   <AppLayout title="Edit Item">
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white">
+      <h2
+        class="font-semibold text-xl text-gray-800 leading-tight dark:text-white"
+      >
         Edit Item
       </h2>
     </template>
@@ -109,6 +112,21 @@ const submit = () => {
                   v-model="form.zip_code"
                   v-maska
                   data-maska="#####-###"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white"
+                />
+              </div>
+              <div class="col-span-6 sm:col-span-4 mt-4">
+                <label
+                  for="number"
+                  class="block font-medium text-sm text-gray-700 dark:text-gray-300"
+                  >Number</label
+                >
+                <input
+                  type="text"
+                  id="number"
+                  v-model="form.number"
+                  v-maska
+                  data-maska="########"
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white"
                 />
               </div>
