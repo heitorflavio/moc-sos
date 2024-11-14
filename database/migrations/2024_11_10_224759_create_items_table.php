@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->string('zip_code', 10)->nullable();
-            $table->string('latitude', 30)->nullable();
-            $table->string('longitude', 30)->nullable();
+            $table->string('zip_code', 100)->nullable();
+            $table->string('latitude', 100)->nullable();
+            $table->string('longitude', 100)->nullable();
             $table->string('city', 100)->nullable();
             $table->string('state', 100)->nullable();
             $table->string('neighborhood', 100)->nullable();
