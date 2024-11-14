@@ -75,11 +75,23 @@ export default {
     },
     getItemsBounds() {
       this.items.forEach((item) => {
-        // Adiciona um marcador para cada item
-        new google.maps.Marker({
+        const marker = new google.maps.Marker({
           position: { lat: Number(item.latitude), lng: Number(item.longitude) },
           map: this.map,
           title: item.name,
+        });
+
+        // Cria uma janela de informações para exibir mais detalhes
+        const infoWindow = new google.maps.InfoWindow({
+          content: `<div><strong class="text-black">${item.name}</strong></div>
+        <div><strong class="text-black">${item.address}</strong></div>
+        <div><strong class="text-black">${item.neighborhood}</strong></div>
+          <div><strong class="text-black">${item.zip_code ? item.zip_code : ""}</strong></div>`,
+        });
+
+        // Adiciona um ouvinte de evento para abrir a janela de informações ao clicar no marcador
+        marker.addListener("click", () => {
+          infoWindow.open(this.map, marker);
         });
       });
     },
